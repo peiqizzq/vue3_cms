@@ -1,0 +1,110 @@
+import 'element-plus/theme-chalk/base.css'
+import 'element-plus/theme-chalk/index.css'
+
+import {
+  ElButton,
+  ElAside,
+  ElAlert,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElRadio,
+  ElTabs,
+  ElTabPane,
+  ElIcon,
+  ElCheckbox,
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElCol,
+  ElRow,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog
+} from 'element-plus' // from 'element-plus/lib/index'
+// 导入图标
+import {
+  User,
+  Iphone,
+  Monitor,
+  Setting,
+  Goods,
+  ChatLineRound,
+  Fold,
+  Expand,
+  ArrowDown,
+  Edit,
+  Delete,
+  Refresh
+} from '@element-plus/icons-vue'
+const components = [
+  ElButton,
+  ElAside,
+  ElAlert,
+  ElForm,
+  ElFormItem,
+  ElInput,
+  ElRadio,
+  ElTabs,
+  ElTabPane,
+  ElIcon,
+  ElCheckbox,
+  ElLink,
+  ElContainer,
+  ElHeader,
+  ElMain,
+  ElMenu,
+  ElSubMenu,
+  ElMenuItem,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem,
+  ElAvatar,
+  ElRow,
+  ElCol,
+  ElSelect,
+  ElOption,
+  ElDatePicker,
+  ElBreadcrumb,
+  ElBreadcrumbItem,
+  ElTable,
+  ElTableColumn,
+  ElPagination,
+  ElImage,
+  ElDialog,
+  // 图标
+  User,
+  Iphone,
+  Monitor,
+  Setting,
+  Goods,
+  ChatLineRound,
+  Fold,
+  Expand,
+  ArrowDown,
+  Edit,
+  Delete,
+  Refresh
+]
+import { App } from 'vue'
+export default function registerElement(app: App): void {
+  for (const component of components) {
+    // console.log(component.name, '------', component)
+    app.component(component.name, component)
+  }
+}

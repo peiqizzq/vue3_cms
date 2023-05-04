@@ -1,23 +1,38 @@
 {
+  // 编译选项。虽然做了很多设置，但是还是会根据babel来转化
   "compilerOptions": {
+    // 目标代码(ts -> js(es6/7/8..))
     "target": "esnext",
-    "module": "esnext",
+    // 目标代码需要使用的模块方案(common js-require/module.exports / es-module import/export)
+    "module": "esnext",// umd，多模块
+    // 严格模式
     "strict": true,
+    // 是否对jsx代码做转化。转化成h/creatElement等，这里不用，有babel转化
     "jsx": "preserve",
+    // 解析模块的规则，'index.node/.js/.ts等等'，node有自己的一套解析规则
     "moduleResolution": "node",
+    // 是否跳过库的类型检测。一些库之间会出现重名等，使用的时候直接从对应库里导出就行。
     "skipLibCheck": true,
+    // 是否允许es模块导出，default导出。export default/module.export等
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
+    // 开启映射
     "sourceMap": true,
+    // 文件路径解析的时候基础url
     "baseUrl": ".",
+    //具体解析可以使用的类型(es5，es6中有的一些类型(window)等...)，可以不传，默认使用target的类型
     "types": ["webpack-env"],
+    // 编译阶段的路径解析，相当于webpack的alisa。"component/*": ["src/component/*"]
     "paths": {
       "@/*": ["src/*"]
     },
+    // 指定在项目中可以使用哪些库的类型。如proxy，window，document等
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  // 哪些ts文件需要解析
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -25,5 +40,6 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  // 排除哪些文档，比如导入了axios，那么axios的文件夹所有东西都会被解析，使用exclude，会排除其他文件，只解析导入引用的
   "exclude": ["node_modules"]
 }
