@@ -7,7 +7,7 @@ export function usePageSearch() {
     pageContentRef.value?.getPageContent()
   }
   const handleQuery = (queryInfo: any) => {
-    console.log('hooks', queryInfo)
+    // console.log('hooks', queryInfo)
     pageContentRef.value?.getPageContent(queryInfo)
   }
   return { pageContentRef, handleReset, handleQuery }

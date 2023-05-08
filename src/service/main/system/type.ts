@@ -3,6 +3,6 @@ export interface IlistData {
   list: any[]
   totalCount: number
 }
-export enum LainApi {
-  userlist = '/users/list'
-}
+// export enum LainApi {
+//   userlist = '/users/list'
+// }

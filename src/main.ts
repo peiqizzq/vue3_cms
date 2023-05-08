@@ -5,8 +5,6 @@ import router from './router'
 import store from './store'
 import 'normalize.css'
 import './assets/css/index.less'
-import z2qios from './service/index'
-// import './service/axios_demo'
 
 // 这是全局使用element-plus
 // import ElementPlus from 'element-plus'

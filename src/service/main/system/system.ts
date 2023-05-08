@@ -13,3 +13,15 @@ export function deletePagedataReq(url: string) {
     url: url
   })
 }
+export function creataPagedataReq(url: string, newData: object) {
+  return z2qios.post<IdataType>({
+    url: url,
+    data: newData
+  })
+}
+export function editPagedataReq(url: string, editData: object) {
+  return z2qios.patch<IdataType>({
+    url: url,
+    data: editData
+  })
+}

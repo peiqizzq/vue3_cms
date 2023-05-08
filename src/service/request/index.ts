@@ -92,9 +92,11 @@ class Z2QRequest {
         setTimeout(() => {
           this.loading?.close()
         }, 1000)
-        // 服务器200，自己报错
-        if (res.data.returnCode === '-1001') {
-          console.log('请求失败')
+        // 服务器200，自己报错。观察返回数据，发现请求失败的时候，服务器返回的数据是AxiosError类型。
+        // 返回数据在res.response.data中
+        // console.log('request/index.ts', res)
+        if (!res.data) {
+          console.log('Atttion! 请求失败', (res as any).response.data)
         } else {
           return res.data
         }
@@ -108,6 +110,7 @@ class Z2QRequest {
         if (err.response.status === 404) {
           console.log('404')
         }
+        console.log('request/index/reqRes', err)
         return err
       }
     )

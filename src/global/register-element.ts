@@ -35,7 +35,9 @@ import {
   ElTableColumn,
   ElPagination,
   ElImage,
-  ElDialog
+  ElDialog,
+  ElTree,
+  ElCard
 } from 'element-plus' // from 'element-plus/lib/index'
 // 导入图标
 import {
@@ -87,6 +89,8 @@ const components = [
   ElPagination,
   ElImage,
   ElDialog,
+  ElTree,
+  ElCard,
   // 图标
   User,
   Iphone,

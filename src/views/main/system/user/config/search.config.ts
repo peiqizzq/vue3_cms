@@ -34,11 +34,11 @@ export const searchFormConfig: Iform = {
       options: [
         {
           title: '启用',
-          value: '1'
+          value: 1
         },
         {
           title: '禁用',
-          value: '0'
+          value: 0
         }
       ]
     },

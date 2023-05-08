@@ -8,7 +8,12 @@
       <el-row>
         <template v-for="item of formItems" :key="item.label">
           <el-col :="colLayout">
-            <el-form-item :label="item?.label" :style="itemStyle">
+            <el-form-item
+              :label="item?.label"
+              :style="itemStyle"
+              :rules="item?.rules"
+              v-if="!item.isHidden"
+            >
               <!-- 通过type属性决定这里是什么组件 -->
               <component
                 :is="item.itemType"
@@ -16,10 +21,11 @@
                 :="{ ...item, ...item?.otherOptions }"
                 v-model="formData[`${item.field}`]"
               >
-                <!-- 单独处理select -->
+                <!-- 单独处理select,显示的内容在value属性 -->
                 <template v-if="item.itemType === 'el-select'">
                   <el-option
                     v-for="option in item?.options"
+                    :label="option.title"
                     :key="option.value"
                     :value="option.value"
                     >{{ option.title }}</el-option
@@ -80,16 +86,22 @@ export default defineComponent({
     // const formData = ref(rawData)
     // 从props解构，相当于浅拷贝了一份对象，对象的内容是props的解构，简单类型数据的修改不破坏单项数据流
     const formData = ref({ ...props.modelValue })
+    // 这里的拷贝必须要触发一次输入框等数据的单独修改才能生效响应式
+
     // 再通过watch深度监听formData的修改，通过emit提交更改，让父组件去修改props
     watch(
       formData,
       (newValue) => {
-        console.log(newValue)
         emit('update:modelValue', newValue)
       },
       { deep: true }
     )
-
+    // 另一种双向绑定的方法
+    // const handleValueChange = (value: any, field: string) => {
+    //   emit('update:modelValue', { ...props.modelValue, [field]: value })
+    // }
+    // 给el-input组件加上
+    // @update:modelValue="handleValueChange($event, item.field)
     return {
       formData
     }

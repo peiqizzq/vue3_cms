@@ -23,6 +23,8 @@ export interface IformItem {
   options?: IoptionType[]
   // 其他输入框配置，如时间，输入类型为password等
   otherOptions?: object
+  // 是否隐藏本项。像这种单独的功能，可以放到otherOptions中去，根据对应组件的属性来设置想要的效果
+  isHidden?: boolean
 }
 
 export interface Iform {

@@ -22,7 +22,8 @@ export const modelConfig: Iform = {
       otherOptions: {
         type: 'password',
         showPassword: true
-      }
+      },
+      isHidden: true
     },
     {
       field: 'cellphone',
@@ -31,36 +32,34 @@ export const modelConfig: Iform = {
       placeholder: '请输入电话号码'
     },
     {
-      field: 'role',
+      field: 'enable',
       itemType: 'el-select',
-      label: '角色',
-      placeholder: '选择角色',
+      label: '状态',
+      placeholder: '选择用户状态',
       options: [
-        // {
-        //   title: '启用',
-        //   value: '1'
-        // },
-        // {
-        //   title: '禁用',
-        //   value: '0'
-        // }
+        {
+          title: '启用',
+          value: 1
+        },
+        {
+          title: '禁用',
+          value: 0
+        }
       ]
     },
     {
-      field: 'department',
+      field: 'roleId',
+      itemType: 'el-select',
+      label: '角色',
+      placeholder: '选择角色',
+      options: []
+    },
+    {
+      field: 'departmentId',
       itemType: 'el-select',
       label: '部门',
       placeholder: '选择部门',
-      options: [
-        // {
-        //   title: '启用',
-        //   value: '1'
-        // },
-        // {
-        //   title: '禁用',
-        //   value: '0'
-        // }
-      ]
+      options: []
     }
   ],
   labelWidth: '75px',

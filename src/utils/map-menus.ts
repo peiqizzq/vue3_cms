@@ -99,3 +99,20 @@ export function menuMapPermission(userMenus: any[]) {
   _getPermission(userMenus)
   return permission
 }
+
+// 根据菜单拿到叶子节点
+export function menuMapLeaf(userMenus: any[]) {
+  const leafArr: number[] = []
+
+  const _getLeaf = (menus: any[]) => {
+    for (const item of menus) {
+      if (item.children) {
+        _getLeaf(item.children)
+      } else {
+        leafArr.push(item.id)
+      }
+    }
+  }
+  _getLeaf(userMenus)
+  return leafArr
+}

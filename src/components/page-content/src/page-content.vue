@@ -13,7 +13,7 @@
       <!-- <template #header></template> -->
       <template #header-handle>
         <ElButton type="primary" v-if="isCreate" @click="handleAddNew">新建</ElButton>
-        <ElButton :icon="Refresh" @click="getPageContent"></ElButton>
+        <ElButton :icon="Refresh" @click="getPageContent()"></ElButton>
       </template>
 
       <!-- 使用作用域插槽，拿到子组件插槽传上来的数据 -->

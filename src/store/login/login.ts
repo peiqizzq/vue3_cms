@@ -42,7 +42,8 @@ const loginModule: Module<IloginState, IrootState> = {
     }
   },
   actions: {
-    async accountLoginAction({ commit }, payload: Iaccount) {
+    // 账号密码登录逻辑
+    async accountLoginAction({ commit, dispatch }, payload: Iaccount) {
       // 给账户登录接入request请求,在异步中通过await同步(防止因为使用then而回调过多和回调嵌套)
       const loginResult = await accountLoginReq(payload)
       const { id, token } = loginResult.data
@@ -53,6 +54,8 @@ const loginModule: Module<IloginState, IrootState> = {
       // 本地保存token
       localcache.setCache('token', token)
       // localcache.setCache('token', 'peiqi')
+      // 请求完整的部门和角色菜单数据
+      dispatch('getInitial', null, { root: true })
 
       // 获取用户信息。在有token的情况下，登录就跳转到用户界面，所以用户信息也要缓存
       const userInfoResult = await userInfoByIdReq(id)
@@ -69,14 +72,17 @@ const loginModule: Module<IloginState, IrootState> = {
       // 跳转首页
       router.push('/main')
     },
-    phoneLoginAction({ commit }, payload: any) {
+    // 手机号登录逻辑
+    phoneLoginAction(payload: any) {
       console.log(payload)
     },
     // 对刷新，路径进入等操作进行数据恢复
-    loadLocalLogin({ commit }) {
+    loadLocalLogin({ commit, dispatch }) {
       const token = localcache.getCache('token')
       if (token) {
         commit('changeToken', token)
+        // 请求完整的部门和角色菜单数据
+        dispatch('getInitial', null, { root: true })
       }
       const userInfo = localcache.getCache('userinfo')
       if (userInfo) {

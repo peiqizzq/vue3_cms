@@ -16,7 +16,7 @@
         <el-dropdown-menu>
           <el-dropdown-item divided>用户信息</el-dropdown-item>
           <el-dropdown-item divided>系统管理</el-dropdown-item>
-          <el-dropdown-item divided>退出登录</el-dropdown-item>
+          <el-dropdown-item divided @click="handleExit">退出登录</el-dropdown-item>
         </el-dropdown-menu>
       </template>
     </el-dropdown>
@@ -26,13 +26,22 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
+import { useRouter } from 'vue-router'
+import localCache from '@/utils/cache'
 
 export default defineComponent({
   setup() {
     const store = useStore()
     const username = computed(() => store.state.login.userInfo.name)
+
+    const router = useRouter()
+    const handleExit = () => {
+      localCache.removeCache('token') // 也可以把其他的全部都删除
+      router.push('/main')
+    }
     return {
-      username
+      username,
+      handleExit
     }
   }
 })

@@ -1,7 +1,12 @@
 import { IrootState } from '@/store/type'
 import { Module } from 'vuex'
 import { IsystemState } from './type'
-import { deletePagedataReq, getPageListReq } from '@/service/main/system/system'
+import {
+  creataPagedataReq,
+  deletePagedataReq,
+  editPagedataReq,
+  getPageListReq
+} from '@/service/main/system/system'
 
 const systemModule: Module<IsystemState, IrootState> = {
   namespaced: true,
@@ -78,7 +83,7 @@ const systemModule: Module<IsystemState, IrootState> = {
       commit(`change${pageName}List`, list)
       commit(`change${pageName}Count`, totalCount)
     },
-    // 按钮删除操作
+    // 删除按钮操作
     async deletePagedataAction({ dispatch }, payload) {
       const { pageName, id } = payload
       const pageUrl = `${pageName}/${id}`
@@ -87,6 +92,33 @@ const systemModule: Module<IsystemState, IrootState> = {
       dispatch('getPageListAction', {
         pageName,
         // 这里的偏移数据应该是根据上面的search来设置的，可以把search和content的信息都放到vuex中去共享
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    // 新增按钮操作
+    async createPagedataAction({ dispatch }, payload) {
+      const { pageName, newData } = payload
+      const pageUrl = `/${pageName}`
+      // console.log('createPagedataAction', payload.newData)
+      await creataPagedataReq(pageUrl, newData)
+      dispatch('getPageListAction', {
+        pageName,
+        queryInfo: {
+          offset: 0,
+          size: 10
+        }
+      })
+    },
+    // 编辑按钮操作
+    async editPagedataAction({ dispatch }, payload) {
+      const { pageName, editData, id } = payload
+      const pageUrl = `/${pageName}/${id}`
+      await editPagedataReq(pageUrl, editData)
+      dispatch('getPageListAction', {
+        pageName,
         queryInfo: {
           offset: 0,
           size: 10

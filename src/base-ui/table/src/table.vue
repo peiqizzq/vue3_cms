@@ -123,15 +123,15 @@ export default defineComponent({
       // 函数里面触发的这个事件的是我们自己定义的table.vue组件的事件。
       emit('selectionChange', value)
     }
-    // 触发pageInfo改变的事件
+    // 触发pageInfo改变的事件,当前页面的大小和当前页数
     const handleCurrentChange = (currentPage: number) => {
       emit('update:pageInfo', { ...props.pageInfo, currentPage })
     }
     const handleSizeChange = (pageSize: number) => {
-      console.log({ ...props.pageInfo, pageSize })
+      // console.log({ ...props.pageInfo, pageSize })
       emit('update:pageInfo', { ...props.pageInfo, pageSize })
     }
-    console.log(props.tableData)
+    // console.log(props.tableData)
 
     return {
       handleSelected,
